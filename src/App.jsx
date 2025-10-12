@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import './styles/styles.scss'
+import Title from './components/Title'
+import Company from './pages/Company'
+import WhatWedo from './pages/WhatWeDo'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -8,8 +11,9 @@ function App() {
   return (
     <>
     <Header/>
-      <div>
-      </div>
+    <Title />
+    <Company/>
+    <WhatWedo/>
     </>
   )
 }

@@ -1,16 +1,9 @@
 :root {
-  font-family: var(--custom-font), Arial, serif;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, Arial, serif;
   font-size: 62.5%;
   font-weight: 400;
   line-height: 1.5;
 
-  margin: 0;
-  /* place-items: center; */
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: rgb(65, 33, 33);
 
   font-synthesis: none;
@@ -19,16 +12,47 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  -moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+
+  display: flex;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+  width: calc(100vw - 6px);
+  /* 스크롤바 사이즈 제외,
+  margin: 0 설정도 여기에 같이 해야 함. */
+  min-width: 320px;
+  font-size: 1.6rem;  /* = 16px */
+}
+
 a {
   text-decoration: none;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+::-webkit-scrollbar {
+  width: 6px;     /* 세로 스크롤바 */
+  height: 0px;    /* 가로 스크롤바 */
+}
+
+/* 스크롤바 트랙 (배경) */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 스크롤바 핸들 (움직이는 부분) */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2); /* 회색 반투명 */
+  border-radius: 10px;
+}
+
+/* 얇은 스크롤바 */ 
+.scrollable-element {
+  scrollbar-width: thin; /* normal | thin | none */
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
 button {
@@ -45,7 +69,7 @@ button {
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  /* outline: 4px auto -webkit-focus-ring-color; */
 }
 
 @media (prefers-color-scheme: light) {
