@@ -1,36 +1,23 @@
-import companyImg from '../assets/images/company_1.png'
+import video01 from '../assets/video_01.mp4'
 export default function Company() {
     return(
         <section id='company'>
             <div id='company-inner'>
-                <img src={companyImg} alt="company"/>
+                <video id={'landing-video'} autoPlay muted loop playsInline>
+                    <source
+                        src={video01}
+                        type="video/mp4"/>
+                </video>
                 <p>회사 소개</p>
                 <div>
-                    <div className='right'>
-                    신뢰/전문성<br/>
-                    상업용 부동산, 데이터로 증명하는 전문성<br/>
-                    오피스·상가 매매의 표준을 만드는 사람들<br/>
-                    숫자와 사실로 말하는 상업용 부동산 파트너<br/>
-                    정확한 가치평가, 투명한 거래, 확실한 마감<br/>
-                    </div>
-                </div>
-                <div>
-                    <div className='left'>
-                    성과/가치 중심<br/>
-                    자산의 가치를 최대화하는 상업용 매매 솔루션<br/>
-                    빠른 의사결정, 높은 성사율, 낮은 리스크<br/>
-                    시장을 읽고 타이밍을 잡는 상업용 전문가 그룹<br/>
-                    투자수익을 설계하는 오피스·상가 매매 컨설팅
-                    </div>
-                </div>
-                <div>
-                    <div className='right'>
-                    파트너십/컨설팅<br/>
-                    매도·매수 전 과정에 함께하는 전략 파트너<br/>
-                    첫 미팅부터 잔금까지, 디테일이 결과를 만듭니다<br/>
-                    고객의 의도와 숫자를 연결하는 상업용 브로커리지<br/>
-                    의사결정이 쉬워지는 리서치 기반 컨설팅
-                    </div>
+                    <span>'부동산'이란 산업에 미래를 건 젊은이들이<br/>
+                    한자리에 모였습니다.</span><br/>
+                    <br/>
+                    <span>내일은건물주부동산중개법인</span>은<br/>
+                    '빌딩 매매 서비스'를 중심으로<br/>
+                    젊은 구성원들이 영향력을 맘껏 발휘할 수 있고,<br/>
+                    이와 관련된 Contents를 활용해<br/>
+                    여려 형태의 유무형 가치를 만들어가고 있는 회사입니다.<br/>
                 </div>
             </div>
         </section>
