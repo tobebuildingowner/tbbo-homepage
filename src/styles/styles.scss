@@ -105,10 +105,6 @@ header {
 	}
 }
 
-section {
-
-}
-
 #title {
 	background-color: white;
 	width: 100%;
@@ -148,3 +144,43 @@ section {
 		text-align: right;
 	}
 }
+
+#count-down {
+	font-size: 3em;
+	color: brown;
+}
+
+
+
+#contact {
+	background-color: white;
+	width: 100%;
+	padding: 0 25rem;
+	> label {
+		font-size: 1.6rem;
+		> input {
+			width: 100%;
+			display: block;
+			padding: 1rem;
+			font-size: 1.5em;
+		}
+	}
+}
+
+
+#tabs {
+	display: flex;
+	justify-content: space-between;
+	padding: 0;
+	> li {
+		list-style: none;
+		display: block;
+		width: 100%;
+		padding: 3em 0;
+		text-align: center;
+		cursor: pointer;
+	}
+}
+
+
+

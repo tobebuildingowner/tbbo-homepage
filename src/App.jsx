@@ -4,16 +4,18 @@ import './styles/styles.scss'
 import Title from './components/Title'
 import Company from './pages/Company'
 import WhatWedo from './pages/WhatWeDo'
+import Contact from './pages/Contact'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-    <Header/>
-    <Title />
-    <Company/>
-    <WhatWedo/>
+      <Header/>
+      <Title />
+      <Company/>
+      <WhatWedo/>
+      <Contact/>
     </>
   )
 }
