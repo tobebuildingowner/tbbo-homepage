@@ -7,3 +7,9 @@ export const valueInit = {
     phoneNumber: "",
     content: ""
 }
+
+export const inputColumns = [
+    {title: "성함", id: "name"},
+    {title: "연락처", id: "phoneNumber"},
+    {title: "문의 내용", id: "content"},
+]
