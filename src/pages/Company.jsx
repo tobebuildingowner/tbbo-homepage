@@ -1,15 +1,21 @@
 import video01 from '../assets/video_01.mp4'
 import CountDown from '../components/CountDown'
-export default function Company() {
-    return(
-        <section id='company'>
-            <div id='company-inner'>
 
+export default function Company() {
+
+
+    return(
+        <>
+        
+            <div id='video-container'>
                 <video id={'landing-video'} autoPlay muted loop playsInline>
                     <source
                         src={video01}
                         type="video/mp4"/>
                 </video>
+            </div>
+
+            <section id='company'>
 
                 <p>회사 소개</p>
                 <div>
@@ -33,8 +39,7 @@ export default function Company() {
                         <div><div>2025</div>내일은건물주(주)로 사명 변경</div>
                     </div>
                 </div>
-           
-            </div>
-        </section>
+            </section>
+        </>
     )
 } 

@@ -1,4 +1,4 @@
-import { YoutubeOutlined } from "@ant-design/icons"
+import { SendOutlined, YoutubeOutlined } from "@ant-design/icons"
 import { motion } from "motion/react"
 import { useEffect, useState } from "react"
 import { inputColumns, tabs, valueInit } from "../constants/constants"
@@ -36,9 +36,11 @@ export default function Contact () {
                             initial={false}
                             animate={{
                                 backgroundColor:
-                                    item === selectedTab ? "#690909ff" : "#e3e3e3ff",
+                                    item === selectedTab ? "#cc6e6eff" : "#edededff",
                                 color:
                                     item === selectedTab ? "#FFFFFF" : "#2e2e2e",
+                                fontWeight:
+                                    item === selectedTab ? 700 : 400,
                             }}
                             onClick={() => setSelectedTab(item)}
                         >
@@ -64,6 +66,12 @@ export default function Contact () {
                     </label>
                 ))}
             </div>
+
+            <button>
+                문의하기
+                <SendOutlined rotate={-45} />
+            </button>
+
 
             <article>
                 <div>

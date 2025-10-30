@@ -117,7 +117,8 @@ header {
 
 .title {
 	font-size: 5rem;
-	font-weight: 700;
+	font-weight: 900;
+	// font-family: 'Montserrat';
 }
 
 .subtitle {
@@ -125,27 +126,26 @@ header {
 	font-size: 2rem;
 }
 
-#company {
+#video-container {
 	background-color: white;
 	width: 100%;
 	padding: 0 10rem;	
+	> video {
+		width: 100%;
+		height: calc(100vh - 1.6rem);
+		// object-fit: contain;
+		z-index: 0;
+	}
 }
 
-#company-inner {
+#company {
 	width: 100%;
 	height: fit-content;
 	position: relative;
 	display: flex;
 	flex-direction: column;
 	row-gap: 5em;
-	> video {
-		// display: block;
-		// position: absolute;
-		width: 100%;
-		height: calc(100vh - 1.6rem);
-		// object-fit: contain;
-		z-index: 0;
-	}
+	z-index: 1;
 	> div {
 		width: 100%;
 		font-size: 1.7em;
@@ -203,7 +203,6 @@ label {
 	}
 }
 
-
 #tabs {
 	display: flex;
 	justify-content: space-between;
@@ -217,8 +216,23 @@ label {
 		padding: 1em 0;
 		text-align: center;
 		cursor: pointer;
+		letter-spacing: 0.3em;
 	}
 }
 
 
-
+button {
+	border: none;
+	color: var(--color-main-30);
+	// background-color: transparent;
+	display: block;
+	border-radius: 10px;
+	padding: 2em 0;
+	min-width: 20em;
+	font-size: 1.2em;
+	margin-top: 2em;
+	> span {
+		transform: translateY(-0.2em);
+		margin-left: 0.5em;
+	}
+}
