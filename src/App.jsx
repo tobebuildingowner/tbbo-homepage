@@ -13,52 +13,51 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
 
+  const [onCountDown, isOnCountDown] = useState(false)
   
+  useGSAP(()=>{
     
-    useGSAP(()=>{
-        
-        const tl = gsap.timeline()
-        tl.to("#video-container", {padding: "6.8rem 0 0 0", minWidth: "100vw", ease: true}, "<")
+    gsap.set(["#subtitle", ".intro", ".history"], { opacity: 0 });
 
-        const tl2 = gsap.timeline()
-        tl2.to("video", { ease: true},)
+    const tl = gsap.timeline()
+    tl.fromTo("video",  {scale: 0.9, ease: true}, {scale: 1, ease: true})
+    .fromTo("#overlay",  {scale: 0.9, opacity: 0, ease: true}, {scale: 1, opacity: 1, ease: true}, "<")
 
-        ScrollTrigger.create({
-            animation: tl,
-            trigger: 'main',
-            start: "top top",
-            end: "+=420rem",
-            // pin: true,
-            scrub: 1,
-            toggleActions: 'play reverse restart reverse',
-            // onEnter: () => tl.play(),
-            onComplete: () => tl2.play(),
-            // mark ers: true,
-        },);
+    const tl2 = gsap.timeline()
+    tl2.to("video", {ease: true},0)
+    .to("#subtitle", {opacity: 1, duration: 0.3, ease: true}, "<")
+    .to(".intro", {opacity: 1, duration: 0.3, ease: true}, "<", 0.3)
+    .to(".intro", {opacity: 0, duration: 0.2, ease: true}, )
+    .to(".history", {opacity: 1, duration: 0.3, ease: true}, "<0.1", 0.8)
+    .call(()=>isOnCountDown(true))
+    .addPause(1.5)
 
-          ScrollTrigger.create({
-            animation: tl2,
-            trigger: "#video-container",
-            start: "top top",
-            end: "+=300%",
-            pin: true,
-            scrub: 1,
-            toggleActions: 'start reverse restart reverse',
-            // onEnter: () => tl2.play(),
-            markers: true,
-        },);
+    ScrollTrigger.create({
+        animation: tl,
+        trigger: 'main',
+        start: "top top",
+        end: "+=2%",
+        scrub: 1,
+        toggleActions: 'start none reverse none',
+        onComplete: () => tl2.play(),
+        // markers: true,
+    },);
 
-        // const master = gsap.timeline({
-        //   ScrollTrigger:{
-        //     trigger: "main",
-        //     start: "top top",
-        //     end: "+=320%",
-        //     scrub: 1,
-        //     toggleActions: 'start reverse restart reverse',
-        //   }
-        // })
-        // master.add(tl)
-        // master.add(tl2, ">")
+      ScrollTrigger.create({
+        animation: tl2,
+        trigger: "#company-wrapper",
+        start: "top top",
+        end: "+=400%",
+        pin: true,
+        scrub: 1,
+        toggleActions: 'start none reverse none',
+          snap: {                
+            snapTo: [0.3, 0.8],
+            // duration: 0.4,
+            ease: "power1.in"
+        },
+        markers: true,
+    },);
 
     },[])
 
@@ -68,7 +67,7 @@ function App() {
       <Header/>
       <main>
         <Title />
-        <Company/>
+        <Company onCountDown={onCountDown}/>
         <WhatWedo/>
         <Contact/>
       </main>

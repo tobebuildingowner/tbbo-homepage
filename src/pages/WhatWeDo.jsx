@@ -1,7 +1,7 @@
 import companyImg from '../assets/images/company_1.png'
 export default function WhatWedo() {
     return(
-        <section id='company'>
+        <section id='service'>
             <div id='company-inner'>
                 <p>서비스 소개</p>
                 <div>
@@ -11,8 +11,7 @@ export default function WhatWedo() {
                     오피스·상가 매매의 표준을 만드는 사람들<br/>
                     숫자와 사실로 말하는 상업용 부동산 파트너<br/>
                     정확한 가치평가, 투명한 거래, 확실한 마감<br/>
-                    </div>
-                </div>
+                    </div>                </div>
                 <div>
                     <div className='left'>
                     자산 관리<br/>
