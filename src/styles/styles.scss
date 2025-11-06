@@ -102,6 +102,7 @@ header {
 		display: flex;
 		column-gap: 1rem;
 		padding-top: 1.5rem;
+		cursor: pointer;
 	}
 }
 
@@ -120,6 +121,7 @@ header {
 	font-weight: 900;
 }
 
+
 .subtitle {
 	margin-top: 1rem;
 	font-size: 2rem;
@@ -130,9 +132,11 @@ header {
 	width: 100%;
 	height: calc(100vh - 6.8rem);
 	display: grid;
+	align-items: center;
+	justify-content: center;
 	> video {
 		scale: 1;	
-		width: 100%;
+		width: 100vw;
 		height: calc(100vh - 6.8rem);
 		margin-top: 6.8rem;
 		z-index: 0;
@@ -142,15 +146,15 @@ header {
 		grid-area: 1 / 1;
 	}
 	> #overlay {
-		content: "";
 		scale: 1;
-		margin-top: 6.8rem;
-		position: absolute;
-		inset: 0;
+		width: 100vw;
+		// position: absolute;
+		// inset: 0;
 		background: rgba(0, 0, 0, 0.5);
 		z-index: 1;
 		pointer-events: none;
-		height: 100%;
+		height: calc(100vh - 6.8rem);
+		margin-top: 6.8rem;
 	}
 }
 
@@ -158,16 +162,19 @@ header {
 	z-index: 2;
 	display: grid;
 	width: 100%;
+	max-width: 1680px;
 	grid-template-columns: repeat(12, 1fr);
 	column-gap: 2rem;
-	padding: 14.8rem 10rem 10rem 10rem;
+	padding: 16.8rem 10rem 10rem 10rem;
+	align-items: center;
+	margin: 0 auto;
 	color: white;
 	> p {
 		grid-column: 1 / 2;
 		font-size: 2em;
 		font-weight: 900;
 		white-space: nowrap;
-		margin-top: 3em;
+		margin-top: -300%;
 	}
 	> div {
 		grid-column: 3 / -1;
@@ -207,40 +214,70 @@ header {
 	> pre {
 		font-size: 3em;
 		font-weight: 900;
-		color: rgb(233, 55, 55);
+		color: var(--color-main-50);
 		font-family: 'Montserrat';
 		margin: -0.3em 0 0 0;
 	}
 }
 
-#service {
+
+#whatWeDo-wrapper {
+	background-color: var(--color-main-50);
+	color: white;
 	width: 100%;
-	height: fit-content;
-	// position: absolute;
-	top: 0;
-	right: 10rem;
-	margin-top: calc(100vh + 60rem);
+	// height: calc(100vh - 6.8rem);
 	display: flex;
 	flex-direction: column;
-	color: white;
-	row-gap: 5em;
-	z-index: 1;
+	justify-content: center;
+	align-items: center;
+	padding: 16.8rem 0 10rem 0;
+}
+
+.whatWeDo-grid {
+	width: 100%;
+	display: grid;
+	max-width: 1680px;
+	padding: 15rem 10rem;
+	grid-template-columns: repeat(12, 1fr);
+	column-gap: 2rem;
+	align-items: center;
 	> div {
+		grid-column: 1 / 7;
 		width: 100%;
-		font-size: 1.7em;
-		padding: 10rem 0;
-		z-index: 1;
-		text-align: right;
+		font-size: 1.2em;
+		> p {
+			font-size: 0.8em;
+			> span {
+				font-size: 1.8em;
+				font-weight: 900;
+			}
+		}
+		> div:first-of-type {
+			border-bottom: 1px solid white;
+			padding-bottom: 1.5em;
+		}
+	}
+	> img {
+		grid-column: 8 / -1;
+		width: 100%;
+		aspect-ratio: 16 /9;
 	}
 }
 
+.feature-box {
+	line-height: 1.8;
+}
+
 #contact {
-	padding: 0 10rem;
+	padding: 16.8rem 0 10rem 0;
 	background-color: white;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	> * {
+		max-width: 1680px;
+	}
 	> div {
 		width: 60%;
 	}

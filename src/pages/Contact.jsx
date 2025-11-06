@@ -1,19 +1,19 @@
 import { SendOutlined, YoutubeOutlined } from "@ant-design/icons"
 import { motion } from "motion/react"
-import { useEffect, useState } from "react"
+import { forwardRef, useEffect, useState } from "react"
 import { inputColumns, tabs, valueInit } from "../constants/constants"
+import { addHyphenToPhoneNo } from "../utils/utils"
 
-export default function Contact () {
+const Contact = forwardRef(function Contact (_, ref) {
 
     const [selectedTab, setSelectedTab] = useState(tabs[0])
     const [inputValues, setInputValues] = useState(valueInit)
 
     function handleInputValueChange (e) {
-        const {id, value} = e.target
+        const {id, value} = e.target;
        setInputValues((prev)=>({
-        ...prev, [id]:value
-       }))
-    }
+        ...prev, [id]:id==='phoneNumber'? addHyphenToPhoneNo(value) : value
+    }))}
 
     useEffect(()=>{
         setInputValues((prev)=>({
@@ -21,9 +21,16 @@ export default function Contact () {
         }))
     }, [selectedTab])
 
+    useEffect(()=>{
+        return ()=> {
+            setInputValues(valueInit);
+            // setModalMessage("");
+        }
+    }, [])
+
     return (
 
-        <section id='contact'>
+        <section id='contact' ref={ref}>
             
             <div>
                 <div className="title">CONTACT</div>
@@ -91,3 +98,5 @@ export default function Contact () {
 
     )
 }
+)
+export default Contact;

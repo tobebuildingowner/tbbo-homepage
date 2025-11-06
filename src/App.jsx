@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Header from './components/Header'
 import './styles/styles.scss'
 import Title from './components/Title'
@@ -14,6 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
 
   const [onCountDown, isOnCountDown] = useState(false)
+  const refs = useRef({company:null, whatWeDo: null, contact:null})
   
   useGSAP(()=>{
     
@@ -47,12 +48,12 @@ function App() {
         animation: tl2,
         trigger: "#company-wrapper",
         start: "top top",
-        end: "+=400%",
+        end: "+=300%",
         pin: true,
         scrub: 1,
         toggleActions: 'start none reverse none',
           snap: {                
-            snapTo: [0.3, 0.8],
+            snapTo: [0.3, 0.6],
             // duration: 0.4,
             ease: "power1.in"
         },
@@ -61,15 +62,18 @@ function App() {
 
     },[])
 
+    useEffect(()=>{
+    },[])
+
 
   return (
     <>
-      <Header/>
+      <Header refs={refs}/>
       <main>
-        <Title />
+        <Title ref={refs.current.company}/>
         <Company onCountDown={onCountDown}/>
-        <WhatWedo/>
-        <Contact/>
+        <WhatWedo ref={refs.current.whatWeDo}/>
+        <Contact ref={refs.current.contact}/>
       </main>
     </>
   )

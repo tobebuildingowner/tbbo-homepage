@@ -1,36 +1,62 @@
 import companyImg from '../assets/images/company_1.png'
-export default function WhatWedo() {
+import { managementFeature, rentFeature, tradeFeature } from '../constants/constants'
+import imgTrading from "../assets/images/img_wwd1.png"
+import imgRent from "../assets/images/img_wwd2.png"
+import imgManagement from "../assets/images/img_wwd3.png"
+import { forwardRef } from 'react'
+
+
+const WhatWeDo = forwardRef(function WhatWedo(_, ref) {
+
+    const periodOfWorking = new Date().getFullYear() - 2006
+    
     return(
-        <section id='service'>
-            <div id='company-inner'>
-                <p>서비스 소개</p>
-                <div>
-                    <div className='right'>
-                    건축 컨설팅<br/>
-                    상업용 부동산, 데이터로 증명하는 전문성<br/>
-                    오피스·상가 매매의 표준을 만드는 사람들<br/>
-                    숫자와 사실로 말하는 상업용 부동산 파트너<br/>
-                    정확한 가치평가, 투명한 거래, 확실한 마감<br/>
-                    </div>                </div>
-                <div>
-                    <div className='left'>
-                    자산 관리<br/>
-                    자산의 가치를 최대화하는 상업용 매매 솔루션<br/>
-                    빠른 의사결정, 높은 성사율, 낮은 리스크<br/>
-                    시장을 읽고 타이밍을 잡는 상업용 전문가 그룹<br/>
-                    투자수익을 설계하는 오피스·상가 매매 컨설팅
-                    </div>
+
+        <section id='whatWeDo-wrapper' ref={ref}>
+
+           {/* trade */}
+            <div className='whatWeDo-grid'>
+                <div id={`whatWeDo-description1`}>
+                    <p>우리가 하는 일<br/><span>매입매각 컨설팅</span></p>
+                    <div>강남 부동산 전문가가 가장 신뢰할 수 있는 시세와 물건 리스트를 제공합니다.<br/>
+                    어떤 케이스든 최상의 해답을 드립니다.</div><br/>
+                    {tradeFeature.map((v, i)=>(
+                        <div className='feature-box' key={i}>{v}</div>
+                    ))}
                 </div>
-                <div>
-                    <div className='right'>
-                    건물 관리<br/>
-                    매도·매수 전 과정에 함께하는 전략 파트너<br/>
-                    첫 미팅부터 잔금까지, 디테일이 결과를 만듭니다<br/>
-                    고객의 의도와 숫자를 연결하는 상업용 브로커리지<br/>
-                    의사결정이 쉬워지는 리서치 기반 컨설팅
-                    </div>
-                </div>
+
+                <img id={`whatWeDo-img1`} src={imgTrading} alt="image trading" />
             </div>
+
+            {/* rent */}
+            <div className='whatWeDo-grid'>
+                <div id={`whatWeDo-description2`}>
+                    <p>우리가 하는 일<br/><span>임대 컨설팅</span></p>
+                    <div>{periodOfWorking}년 강남 부동산 중개 노하우로 최대의 임대수익을 실현할 솔루션을 제안합니다.</div><br/>
+                    {rentFeature.map((v, i)=>(
+                        <div className='feature-box' key={i}>{v}</div>
+                    ))}
+                </div>
+
+                <img id={`whatWeDo-img2`} src={imgRent} alt="image Rent" />
+            </div>
+
+            {/* managemrent */}
+            <div className='whatWeDo-grid'>
+                <div id={`whatWeDo-description3`}>
+                    <p>우리가 하는 일<br/><span>건물 관리</span></p>
+                    <div>건물과 먼 곳에 거주해도, 건물에 대해 잘 몰라도 문제 없는 원스탑 서비스를 제공합니다.</div><br/>
+                    {managementFeature.map((v, i)=>(
+                        <div className='feature-box' key={i}>{v}</div>
+                    ))}
+                </div>
+
+                <img id={`whatWeDo-img3`} src={imgManagement} alt="image management" />
+            </div>
+        
         </section>
     )
 } 
+
+)
+export default WhatWeDo;
