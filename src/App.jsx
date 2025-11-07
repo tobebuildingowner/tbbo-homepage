@@ -3,18 +3,19 @@ import Header from './components/Header'
 import './styles/styles.scss'
 import Title from './components/Title'
 import Company from './pages/Company'
-import WhatWedo from './pages/WhatWeDo'
-import Contact from './pages/Contact'
+import WhatWeDo from './pages/WhatWeDo'
+import Proposal from './pages/Proposal'
 import { useGSAP } from '@gsap/react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Footer from './components/Footer'
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
 
   const [onCountDown, isOnCountDown] = useState(false)
-  const refs = useRef({company:null, whatWeDo: null, contact:null})
+  const refs = useRef({company:null, whatWeDo: null, proposal: null, contact:null})
   
   useGSAP(()=>{
     
@@ -54,15 +55,15 @@ function App() {
         toggleActions: 'start none reverse none',
           snap: {                
             snapTo: [0.3, 0.6],
-            // duration: 0.4,
             ease: "power1.in"
         },
-        markers: true,
+        // markers: true,
     },);
 
     },[])
 
     useEffect(()=>{
+      window.scrollTo(0,0)
     },[])
 
 
@@ -70,10 +71,11 @@ function App() {
     <>
       <Header refs={refs}/>
       <main>
-        <Title ref={refs.current.company}/>
+        <Title ref={(el) => (refs.current.company = el)}/>
         <Company onCountDown={onCountDown}/>
-        <WhatWedo ref={refs.current.whatWeDo}/>
-        <Contact ref={refs.current.contact}/>
+        <WhatWeDo ref={(el) => (refs.current.whatWeDo = el)}/>
+        <Proposal ref={(el) => (refs.current.proposal = el)}/>
+        <Footer ref={(el) => (refs.current.contact = el)}/>
       </main>
     </>
   )

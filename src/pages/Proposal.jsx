@@ -1,19 +1,28 @@
-import { SendOutlined, YoutubeOutlined } from "@ant-design/icons"
+import { RightOutlined } from "@ant-design/icons"
 import { motion } from "motion/react"
 import { forwardRef, useEffect, useState } from "react"
 import { inputColumns, tabs, valueInit } from "../constants/constants"
 import { addHyphenToPhoneNo } from "../utils/utils"
+import { Alert } from "../components/components"
+import useAlert from "../services/useAlert"
 
-const Contact = forwardRef(function Contact (_, ref) {
+const Proposal = forwardRef(function Proposal (_, ref) {
 
     const [selectedTab, setSelectedTab] = useState(tabs[0])
     const [inputValues, setInputValues] = useState(valueInit)
+    const { isAlertOn, setIsClickedButton, alertType, setAlertType } = useAlert();
+
 
     function handleInputValueChange (e) {
         const {id, value} = e.target;
        setInputValues((prev)=>({
         ...prev, [id]:id==='phoneNumber'? addHyphenToPhoneNo(value) : value
     }))}
+    function handleClickSend () {
+        setAlertType("send")
+        setInputValues(valueInit)
+        setIsClickedButton(true)
+    }
 
     useEffect(()=>{
         setInputValues((prev)=>({
@@ -24,7 +33,6 @@ const Contact = forwardRef(function Contact (_, ref) {
     useEffect(()=>{
         return ()=> {
             setInputValues(valueInit);
-            // setModalMessage("");
         }
     }, [])
 
@@ -33,7 +41,7 @@ const Contact = forwardRef(function Contact (_, ref) {
         <section id='contact' ref={ref}>
             
             <div>
-                <div className="title">CONTACT</div>
+                <div className="title">제안하기</div>
                 <div className="subtitle">연락처를 남겨주시면 빠르게 회신드리겠습니다.</div>
 
                 <ul id="tabs">
@@ -43,7 +51,7 @@ const Contact = forwardRef(function Contact (_, ref) {
                             initial={false}
                             animate={{
                                 backgroundColor:
-                                    item === selectedTab ? "#cc6e6eff" : "#edededff",
+                                    item === selectedTab ? "#e93737" : "#edededff",
                                 color:
                                     item === selectedTab ? "#FFFFFF" : "#2e2e2e",
                                 fontWeight:
@@ -74,29 +82,16 @@ const Contact = forwardRef(function Contact (_, ref) {
                 ))}
             </div>
 
-            <button>
-                문의하기
-                <SendOutlined rotate={-45} />
-            </button>
+            <div id="send-button">
+                <button onClick={handleClickSend}>
+                    제안하기 <RightOutlined />
+                </button>
+            </div>
 
-
-            <article>
-                <div>
-                    이미지
-                </div>
-                <div>
-                    <div>
-                        서울 강남구 논현동 115-7, 미성빌딩 1층
-                    </div>
-                    <div>
-                        02.3452.5877
-                    </div>
-                    <div>Youtube <YoutubeOutlined /></div>
-                </div>
-            </article>
+            <Alert isAlertOn={isAlertOn} alertType={alertType}/>
         </section>
 
     )
 }
 )
-export default Contact;
+export default Proposal;

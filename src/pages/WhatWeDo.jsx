@@ -1,4 +1,3 @@
-import companyImg from '../assets/images/company_1.png'
 import { managementFeature, rentFeature, tradeFeature } from '../constants/constants'
 import imgTrading from "../assets/images/img_wwd1.png"
 import imgRent from "../assets/images/img_wwd2.png"
@@ -6,7 +5,7 @@ import imgManagement from "../assets/images/img_wwd3.png"
 import { forwardRef } from 'react'
 
 
-const WhatWeDo = forwardRef(function WhatWedo(_, ref) {
+const WhatWeDo = forwardRef(function WhatWeDo(_, ref) {
 
     const periodOfWorking = new Date().getFullYear() - 2006
     

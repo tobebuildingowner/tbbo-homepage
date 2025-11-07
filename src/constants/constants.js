@@ -9,7 +9,7 @@ export const valueInit = {
 }
 
 export const inputColumns = [
-    {title: "성함", id: "name"},
+    {title: "성함(법인명)", id: "name"},
     {title: "연락처", id: "phoneNumber"},
     {title: "문의 내용", id: "content"},
 ]

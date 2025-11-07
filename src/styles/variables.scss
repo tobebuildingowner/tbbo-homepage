@@ -7,7 +7,6 @@ $breakpoints: (
 
 
 :root {
-    // 색상 : 프로젝트 배경
     --color-gray-light: #ebeef0;
     --color-gray-20: #d3d3d3;
     --color-gray-50: #757575;
@@ -20,12 +19,7 @@ $breakpoints: (
     // 색상
     --color-black: #2e2e2e;
     --color-main: #690909ff;
-    --color-main-50: #e93737;
+    --color-main-50-tr: #c6353594;
+    --color-main-50: #c63535;
     --color-main-30: #cc6e6eff;
-    --rgb-main-blue: 11, 111, 232;
-    // --color-main: #000000;
-    // --color-main-700: #314079;     // 주용도 : 배경에 깔린 텍스트
-    // --color-main-600: #314079;     // 주용도 : 텍스트만 단독으로 쓸때
-    // --color-main-500: #314079;     // 주용도 : 배경 (강조)
-    // --color-main-100: #314079;   // 주용도 : 배경 (있다고 알리는 정도)
 }
