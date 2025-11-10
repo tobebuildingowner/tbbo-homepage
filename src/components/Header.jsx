@@ -13,7 +13,7 @@ export default function Header({refs}) {
     return(
         <div id={`header-wrapper`}>
             <header>
-                <img src={CI} alt="CI"/>
+                <img onClick={()=>handleClick('company')} src={CI} alt="CI"/>
                 <div>
                     {Object.values(menuList).map((v)=>(
                         <div onClick={()=>handleClick(v.ref)} key={v.ref}>{v.menu}</div>

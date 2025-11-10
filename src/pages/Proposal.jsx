@@ -16,8 +16,10 @@ const Proposal = forwardRef(function Proposal (_, ref) {
     function handleInputValueChange (e) {
         const {id, value} = e.target;
        setInputValues((prev)=>({
-        ...prev, [id]:id==='phoneNumber'? addHyphenToPhoneNo(value) : value
-    }))}
+            ...prev, [id]:id==='phoneNumber'? addHyphenToPhoneNo(value) : value
+        }))
+    }
+
     function handleClickSend () {
         setAlertType("send")
         setInputValues(valueInit)
@@ -38,13 +40,13 @@ const Proposal = forwardRef(function Proposal (_, ref) {
 
     return (
 
-        <section id='contact' ref={ref}>
+        <section id='proposal' ref={ref}>
             
             <div>
-                <div className="title">제안하기</div>
-                <div className="subtitle">연락처를 남겨주시면 빠르게 회신드리겠습니다.</div>
+                <div className="proposal title">제안하기</div>
+                <div className="proposal subtitle">연락처를 남겨주시면 빠르게 회신드리겠습니다.</div>
 
-                <ul id="tabs">
+                <ul id="tabs" className="proposal">
                     {tabs.map((item, i) => (
                         <motion.li
                             key={i}
@@ -72,17 +74,17 @@ const Proposal = forwardRef(function Proposal (_, ref) {
                 </ul>
 
                 {inputColumns.map((v, i)=>(
-                    <label key={i}>
+                    <label className={`proposal`} id={`proposal_${i}`} key={i}>
                         {v.title}
                         {v.id!=='content'?
-                            <input id={v.id} value={inputValues[v.id]} onChange={(e)=>handleInputValueChange(e)}/>
-                            :<textarea id={v.id} value={inputValues[v.id]} onChange={(e)=>handleInputValueChange(e)}/>
+                            <input value={inputValues[v.id]} onChange={(e)=>handleInputValueChange(e)}/>
+                            :<textarea value={inputValues[v.id]} onChange={(e)=>handleInputValueChange(e)}/>
                         }
                     </label>
                 ))}
             </div>
 
-            <div id="send-button">
+            <div className={`proposal`} id="send-button">
                 <button onClick={handleClickSend}>
                     제안하기 <RightOutlined />
                 </button>
