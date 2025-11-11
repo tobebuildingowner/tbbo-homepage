@@ -61,72 +61,74 @@ function App() {
       // markers: true,
     },);
     
-    gsap.set("[class^='feature-box'], [id$='-img']", { x: '30%', opacity: 0 }); 
+    gsap.set("[class^='feature-box'], [id$='description'], [id$='-img']", { x: '30%', opacity: 0 }); 
       
     const tl3 = gsap.timeline({scrollTrigger:{
-      trigger: '#whatWeDo-description1',
+      trigger: '#trade-description',
       start: "top center+=20%",
-      // end: "+=100%",
       scrub: false,
       // markers: true,
     }})
+    tl3.to("#trade-description", {duration: 0.3, opacity: 1, x:0, ease: "power2.in"})
+    tl3.to("#trade-sub-description", {duration: 0.3, opacity: 1, x:0, ease: "power2.in"}, "<0.15")
+    tl3.to("#trade-img", {duration: 0.4, opacity: 1, x:0, ease: "power2.in"}, "<")
     tradeFeature.forEach((_, i) => {
       tl3.to(
           `#trade_${i}`,
           { duration: 0.3, opacity: 1, x: 0, ease: "power2.in" },
-          i === 0 ? undefined : "<0.1")
+          i === 0 ? "<" : "<0.15")
     })
-    tl3.to("#trade-img", {duration: 0.3, opacity: 1, x:0, ease: "power2.in"}, "<")
 
     const tl4 = gsap.timeline({scrollTrigger:{
-      trigger: '#whatWeDo-description2',
+      trigger: '#rent-description',
       start: "top center+=20%",
-      // end: "+=100%",
       scrub: false,
       // markers: true,
     }})
+    tl4.to("#rent-description", {duration: 0.3, opacity: 1, x:0, ease: "power2.in"})
+    tl4.to("#rent-sub-description", {duration: 0.3, opacity: 1, x:0, ease: "power2.in"}, "<0.15")
+    tl4.to("#rent-img", {duration: 0.4, opacity: 1, x:0, ease: "power2.in"}, "<")
     rentFeature.forEach((_, i) => {
       tl4.to(
           `#rent_${i}`,
           { duration: 0.3, opacity: 1, x: 0, ease: "power2.in" },
-          i === 0 ? undefined : "<0.1")
+          i === 0 ? "<" : "<0.15")
     })
-    tl4.to("#rent-img", {duration: 0.3, opacity: 1, x:0, ease: "power2.in"}, "<")
 
     const tl5 = gsap.timeline({scrollTrigger:{
-      trigger: '#whatWeDo-description3',
+      trigger: '#management-description',
       start: "top center+=20%",
-      // end: "+=100%",
       scrub: false,
       // markers: true,
     }})
+    tl5.to("#management-description", {duration: 0.3, opacity: 1, x:0, ease: "power2.in"})
+    tl5.to("#management-sub-description", {duration: 0.3, opacity: 1, x:0, ease: "power2.in"}), "0.15"
+    tl5.to("#management-img", {duration: 0.4, opacity: 1, x:0, ease: "power2.in"}, "<")
     managementFeature.forEach((_, i) => {
       tl5.to(
           `#management_${i}`,
           { duration: 0.3, opacity: 1, x: 0, ease: "power2.in" },
-          i === 0 ? undefined : "<0.1")
+          i === 0 ? "<" : "<0.15")
     })
-    tl5.to("#management-img", {duration: 0.3, opacity: 1, x:0, ease: "power2.in"}, "<")
 
     gsap.set("[class^='proposal']", { y: '100%', opacity: 0 }); 
       
     const tl6 = gsap.timeline({scrollTrigger:{
       trigger: '#proposal',
       start: "top center",
-      // end: "+=100%",
       scrub: false,
       // markers: true,
     }})
     tl6.to(".title", {duration: 0.3, opacity: 1, y:0, ease: "power2.in"})
-    tl6.to(".subtitle", {duration: 0.3, opacity: 1, y:0, ease: "power2.in"}, "<0.1")
-    tl6.to("#tabs", {duration: 0.3, opacity: 1, y:0, ease: "power2.in"}, "<0.1")
+    tl6.to(".subtitle", {duration: 0.3, opacity: 1, y:0, ease: "power2.in"}, "<0.15")
+    tl6.to("#tabs", {duration: 0.3, opacity: 1, y:0, ease: "power2.in"}, "<0.15")
     inputColumns.forEach((_, i) => {
       tl6.to(
           `#proposal_${i}`,
           { duration: 0.3, opacity: 1, y: 0, ease: "power2.in" },
           "<0.1")
     })
-    tl6.to("#send-button", {duration: 0.3, opacity: 1, y:0, ease: "power2.in"}, "<0.1")
+    tl6.to("#send-button", {duration: 0.3, opacity: 1, y:0, ease: "power2.in"}, "<0.15")
 
   },[])
   
