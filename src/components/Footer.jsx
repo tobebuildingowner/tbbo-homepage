@@ -8,7 +8,7 @@ import useAlert from "../services/useAlert"
 const Footer = forwardRef(function Footer (_,ref) {
     
     const device = useDeviceType();
-    const { isAlertOn, setIsClickedButton, alertType, setAlertType } = useAlert();
+    const { isAlertOn, setIsButtonClicked, alertType, setAlertType } = useAlert();
     
     function handleClickContact (id) {
             if (device==='mobile'&& id==='phone') {
@@ -18,7 +18,7 @@ const Footer = forwardRef(function Footer (_,ref) {
                 navigator.clipboard.writeText(id==="phone"? '02-557-8075' : "강남구 논현동 115-7")
                 .then(() => {
                     setAlertType(id)
-                    setIsClickedButton(true)
+                    setIsButtonClicked(true)
                 }).catch((err) => {
                     console.error("복사 실패:", err);
               });

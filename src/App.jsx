@@ -9,7 +9,7 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Footer from './components/Footer'
-import { inputColumns, tradeFeature } from './constants/constants'
+import { inputColumns, managementFeature, rentFeature, tradeFeature } from './constants/constants'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -66,7 +66,7 @@ function App() {
     const tl3 = gsap.timeline({scrollTrigger:{
       trigger: '#whatWeDo-description1',
       start: "top center+=20%",
-      end: "+=100%",
+      // end: "+=100%",
       scrub: false,
       // markers: true,
     }})
@@ -81,11 +81,11 @@ function App() {
     const tl4 = gsap.timeline({scrollTrigger:{
       trigger: '#whatWeDo-description2',
       start: "top center+=20%",
-      end: "+=100%",
+      // end: "+=100%",
       scrub: false,
       // markers: true,
     }})
-    tradeFeature.forEach((_, i) => {
+    rentFeature.forEach((_, i) => {
       tl4.to(
           `#rent_${i}`,
           { duration: 0.3, opacity: 1, x: 0, ease: "power2.in" },
@@ -96,11 +96,11 @@ function App() {
     const tl5 = gsap.timeline({scrollTrigger:{
       trigger: '#whatWeDo-description3',
       start: "top center+=20%",
-      end: "+=100%",
+      // end: "+=100%",
       scrub: false,
       // markers: true,
     }})
-    tradeFeature.forEach((_, i) => {
+    managementFeature.forEach((_, i) => {
       tl5.to(
           `#management_${i}`,
           { duration: 0.3, opacity: 1, x: 0, ease: "power2.in" },
@@ -113,7 +113,7 @@ function App() {
     const tl6 = gsap.timeline({scrollTrigger:{
       trigger: '#proposal',
       start: "top center",
-      end: "+=100%",
+      // end: "+=100%",
       scrub: false,
       // markers: true,
     }})

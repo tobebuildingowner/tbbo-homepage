@@ -6,16 +6,15 @@ const handleSendEmail = async (input) => {
         const templateParams = {
             type: input.type,
             name: input.name,
-            phone: input.phone,
-            contents: input.contents,
-            route: input.route,
+            phone: input.phoneNumber,
+            content: input.content,
         };
 
         await emailjs.send(
-            'service_09tf1ss',
-            'template_uej8c8p',
+            'service_3txp4ii',
+            'template_pw9nmus',
             templateParams, // 폼 대신 templateParams 참조
-            'AZpVNlFW2IsF2tFal'
+            'CxIRa9-N4GekocrV2'
         )
         console.log('정상 발송');
         return { success: true };

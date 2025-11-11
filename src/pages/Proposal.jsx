@@ -5,32 +5,40 @@ import { inputColumns, tabs, valueInit } from "../constants/constants"
 import { addHyphenToPhoneNo } from "../utils/utils"
 import { Alert } from "../components/components"
 import useAlert from "../services/useAlert"
+import handleSendEmail from "../services/sendEmail"
 
 const Proposal = forwardRef(function Proposal (_, ref) {
 
-    const [selectedTab, setSelectedTab] = useState(tabs[0])
     const [inputValues, setInputValues] = useState(valueInit)
-    const { isAlertOn, setIsClickedButton, alertType, setAlertType } = useAlert();
+    const { isAlertOn, setIsButtonClicked, alertType, setAlertType } = useAlert();
 
 
     function handleInputValueChange (e) {
-        const {id, value} = e.target;
+        const {id, value, innerText} = e.target;
        setInputValues((prev)=>({
-            ...prev, [id]:id==='phoneNumber'? addHyphenToPhoneNo(value) : value
+            ...prev, [id]:id==='phoneNumber'? addHyphenToPhoneNo(value) : id==='type'? innerText : value
         }))
     }
 
-    function handleClickSend () {
-        setAlertType("send")
-        setInputValues(valueInit)
-        setIsClickedButton(true)
-    }
+    async function handleClickSend () {
 
-    useEffect(()=>{
-        setInputValues((prev)=>({
-            ...prev, type: selectedTab
-        }))
-    }, [selectedTab])
+        if (!inputValues.name || !inputValues.phoneNumber || !inputValues.content) {
+            setAlertType("empty")
+            setIsButtonClicked(true)
+            return
+        }
+        
+        const result = await handleSendEmail(inputValues)
+
+        if (result.success) {
+        // if (true) {
+            setAlertType("send")
+            setInputValues(valueInit)
+        } else {
+            setAlertType("error")
+        }
+        setIsButtonClicked(true)
+    }
 
     useEffect(()=>{
         return ()=> {
@@ -51,18 +59,19 @@ const Proposal = forwardRef(function Proposal (_, ref) {
                         <motion.li
                             key={i}
                             initial={false}
+                            id={'type'}
                             animate={{
                                 backgroundColor:
-                                    item === selectedTab ? "#e93737" : "#edededff",
+                                    item === inputValues.type ? "#e93737" : "#edededff",
                                 color:
-                                    item === selectedTab ? "#FFFFFF" : "#2e2e2e",
+                                    item === inputValues.type ? "#FFFFFF" : "#2e2e2e",
                                 fontWeight:
-                                    item === selectedTab ? 700 : 400,
+                                    item === inputValues.type ? 700 : 400,
                             }}
-                            onClick={() => setSelectedTab(item)}
+                            onClick={(e) => handleInputValueChange(e)}
                         >
                             {item}
-                            {item === selectedTab ? (
+                            {item === inputValues.type ? (
                                 <motion.div
                                     // style={underline}
                                     layoutId="tabs"
@@ -77,8 +86,8 @@ const Proposal = forwardRef(function Proposal (_, ref) {
                     <label className={`proposal`} id={`proposal_${i}`} key={i}>
                         {v.title}
                         {v.id!=='content'?
-                            <input value={inputValues[v.id]} onChange={(e)=>handleInputValueChange(e)}/>
-                            :<textarea value={inputValues[v.id]} onChange={(e)=>handleInputValueChange(e)}/>
+                            <input value={inputValues[v.id]} id={v.id} onChange={(e)=>handleInputValueChange(e)}/>
+                            :<textarea value={inputValues[v.id]} id={v.id} onChange={(e)=>handleInputValueChange(e)}/>
                         }
                     </label>
                 ))}
