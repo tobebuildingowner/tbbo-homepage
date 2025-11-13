@@ -397,7 +397,11 @@ header {
 		aspect-ratio: 16 /9;
 	}
 	@include respond(md) {
-		padding: 0;
+		padding: 10rem;
+		column-gap: 0.4em;
+		> div {
+			font-size: 1.1em;
+		}
 	}
 	@include respond(sm) {
 		padding: 5rem 2rem;
@@ -440,7 +444,20 @@ header {
 		margin-top: 1rem;
 		font-size: 2rem;
 	}
-
+	
+	@include respond(md) {
+		padding: 12.8rem 5rem 7rem 5rem;
+		> div {
+			padding: 0 5rem;
+		}
+		.title {
+			font-size: 3.5rem;
+		}
+		.subtitle {
+			margin-top: 0.5rem;
+			font-size: 1.2em;
+		}
+	}
 	@include respond(sm) {
 		padding: 7.8rem 3rem 4rem 3rem;
 		.title {
@@ -449,8 +466,6 @@ header {
 		.subtitle {
 			font-size: 1em;
 		}
-	}
-	@include respond(sm) {
 		> div {
 			padding: 0;
 		}
@@ -472,12 +487,18 @@ header {
 		cursor: pointer;
 		letter-spacing: 0.3em;
 	}
+	@include respond(md) {
+		margin: 2em 0;
+		> li {
+			font-size: 1em;
+			white-space: nowrap;
+		}
+	}
 	@include respond(sm) {
 		margin: 2rem 0;
 		> li {
 			font-size: 0.8em;
 			letter-spacing: 0;
-			white-space: nowrap;
 		}
 	}
 }
@@ -497,6 +518,16 @@ label {
 	> textarea {
 		height: 10em;
 	}
+	@include respond(md) {
+		font-size: 1em;
+		> input, textarea {
+			margin-top: 0.3em;
+			padding: 0.4em;
+		}
+		> textarea {
+			height: 5em;
+		}
+	}
 	@include respond(sm) {
 		font-size: 0.9em;
 		> input, textarea {
@@ -515,6 +546,10 @@ label {
 	margin-top: 5.5em;
 	display: flex;
 	justify-content: center;
+	@include respond(md) {
+		margin-top: 3.6em;
+		font-size: 1em;
+	}
 	@include respond(sm) {
 		margin-top: 6em;
 		font-size: 0.65em;
@@ -627,6 +662,11 @@ footer {
 			}
 		}
 	}
+	@include respond(md) {
+		> div {
+			font-size: 1em;
+		}
+	}
 	@include respond(sm) {
 		display: flex;
 		flex-direction: column;
@@ -696,11 +736,17 @@ a {
 	&.off {
 		animation: slide-out 0.3s ease forwards;
 	}
+	@include respond(md) {
+		font-size: 1em;
+		padding: 1em 1.5em;
+		&.phone, &.address {
+			left: 40%;
+		}
+	}
 	@include respond(sm) {
 		font-size: 0.9em;
 		padding: 1em 1.5em;
 		&.phone, &.address {
-			column-gap: 1.5rem;
 			left: 26%;
 			top: 40%;
 		}
