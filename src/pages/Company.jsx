@@ -13,7 +13,7 @@ export default function Company({onCountDown}) {
                     src={video01}
                     type="video/mp4"/>
             </video>
-            <div id={`overlay`}/>
+            <div className={`overlay`} id={`overlay`}/>
             
             {/* grid */}
             <div className='grid-layout'>

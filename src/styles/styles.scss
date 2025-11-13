@@ -75,10 +75,35 @@
 	width: 100vw;
 	background-color: white;
 	display: flex;
-	justify-content: center;
-	padding: 2rem 7rem 3rem 7rem;
+	align-items: center;
+	flex-direction: column;
 	border-bottom: 1px solid #d7d7d7;
 	z-index: 10;
+	&.on{
+		border-bottom: none;
+	}
+}
+
+#menu-mobile {
+	background-color: white;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	row-gap: 2rem;
+	align-items: flex-start;
+	padding: 5rem 5rem 7rem 5rem;
+	cursor: pointer;
+	font-size: 1em;
+	font-weight: 600;
+	z-index: 2;
+	height: auto;
+	max-height: 100rem;
+	transition: max-height 0.3s ease, padding 0.2s ease;
+	&.off {
+		max-height: 0rem;
+		padding: 0 5rem;
+		overflow: hidden;
+	}
 }
 
 header {
@@ -88,6 +113,8 @@ header {
 	justify-content: space-between;
 	align-items: center;
 	column-gap: 2rem;
+	padding: 2rem 7rem 3rem 7rem;
+	z-index: 2;
 	> img {
 		width: 30rem;
 		aspect-ratio: 6 / 1.1;
@@ -95,7 +122,7 @@ header {
 		object-position: center;
 		cursor: pointer;
 	}
-	> div {
+	> #menu {
 		font-size: 1.8rem;
 		font-weight: 600;
 		display: flex;
@@ -103,7 +130,56 @@ header {
 		padding-top: 1.5rem;
 		cursor: pointer;
 	}
-
+	> #menu-folded{
+		padding-top: 0.5rem;
+		display: none;
+		> span {
+			height: 2px;
+			width: 2rem;
+			background-color: var(--color-black);
+			transition: all 0.3s ease;
+		}
+		&.on {
+			>span:first-of-type {
+				rotate: 45deg;
+				transform: translateX(25%);
+			}
+			>span:nth-of-type(2) {
+				display: none;
+			}
+			>span:last-of-type {
+				transform: translateX(25%);
+				rotate: -45deg;
+			}
+		}
+	}
+	@include respond(md) {
+		padding: 1rem 5rem 2rem 5rem;
+		> #menu {
+			font-size: 1.2em;
+		}
+		> img {
+			width: 20em;
+		}
+	}
+	@include respond(sm) {
+		padding: 1rem 2rem;
+		> img {
+			width: 18rem;
+			aspect-ratio: 6 / 1.1;
+			object-fit: cover;
+			object-position: center;
+			cursor: pointer;
+		}
+		> #menu {
+			display: none;
+		}
+		> #menu-folded{
+			display: flex;
+			flex-direction: column;
+			row-gap: 0.5rem;
+		}
+	}
 }
 
 #title {
@@ -113,48 +189,75 @@ header {
 	> div {
 		font-size: 4em;
 		font-weight: 800;
+		white-space: nowrap;
 	}
-}
-
-.title {
-	font-size: 5rem;
-	font-weight: 900;
-}
-
-
-.subtitle {
-	margin-top: 1rem;
-	font-size: 2rem;
+	@include respond(md){
+		padding: 18.6rem 5rem 4rem 5rem;
+		> div {
+			font-size: 3em;
+		}
+	}
+	@include respond(sm) {
+		padding: 10.6rem 2rem 3rem 2rem;
+		> div {
+			white-space: pre-line;
+			font-size: 1.5em;
+		}
+	}
 }
 
 #company-wrapper {
 	background-color: white;
 	width: 100%;
-	height: calc(100vh - 6.8rem);
+	height: calc(100dvh - 6.8rem);
 	display: grid;
 	align-items: center;
 	justify-content: center;
 	> video {
 		scale: 1;	
 		width: 100vw;
-		height: calc(100vh - 6.8rem);
-		margin-top: 6.8rem;
 		z-index: 0;
 		object-fit: cover;
+		height: calc(100dvh - 6.8rem);
+		margin-top: 6.8rem;
 	}
 	> * {
 		grid-area: 1 / 1;
 	}
-	> #overlay {
-		scale: 1;
-		width: 100vw;
-		// position: absolute;
-		// inset: 0;
-		background: rgba(0, 0, 0, 0.5);
-		z-index: 1;
-		pointer-events: none;
-		height: calc(100vh - 6.8rem);
-		margin-top: 6.8rem;
+	@include respond(sm) {
+		> video {
+			margin-top: 4.4rem;
+			height: 100dvh;
+		}
+	}
+}
+
+.overlay {
+	scale: 1;
+	width: 100vw;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 1;
+	pointer-events: none;
+	height: calc(100dvh - 6.8rem);
+	margin-top: 6.8rem;
+	&.header {
+		position: absolute;
+		inset: 0;
+		opacity: 1;
+		transition: all 0.3s ease;
+		pointer-events: all;
+		height: 100dvh;
+		&.off {
+			z-index: -1;
+			opacity: 0;
+			pointer-events: none;
+		}
+	}
+	@include respond(sm) {
+		margin-top: -2rem;
+		&.header {
+			margin-top: 5.4rem;
+		}
 	}
 }
 
@@ -184,6 +287,32 @@ header {
 			
 			grid-area: 1 / 1;
 			text-align: right;
+		}
+	}
+	@include respond(md) {
+		padding: 6.4rem 5rem 5rem 5rem;
+		> p {
+			font-size: 1.8em;
+		}
+		> div {
+			font-size: 0.9em;
+		}
+	}
+	@include respond(sm) {
+		margin-top: 3.4rem;
+		height: 100dvh;
+		display: flex;
+		flex-direction: column;
+		row-gap: 8em;
+		align-items: flex-start;
+		justify-content: center;
+		padding: 6.4rem 3rem 3rem 3rem;
+		> p {
+			margin-top: -4em;
+			font-size: 1.4em;
+		}
+		> div {
+			font-size: 0.6em;
 		}
 	}
 }
@@ -230,6 +359,12 @@ header {
 	justify-content: center;
 	align-items: center;
 	padding: 16.8rem 0 10rem 0;
+	@include respond(md) {
+		padding: 12.8rem 0 8rem 0;
+	}
+	@include respond(sm) {
+		padding: 16.8rem 0 10rem 0;
+	}
 }
 
 .whatWeDo-grid {
@@ -261,6 +396,21 @@ header {
 		width: 100%;
 		aspect-ratio: 16 /9;
 	}
+	@include respond(md) {
+		padding: 0;
+	}
+	@include respond(sm) {
+		padding: 5rem 2rem;
+		display: flex;
+		flex-direction: column;
+		row-gap: 2em;
+		> div {
+			font-size: 1em;
+			> div:nth-of-type(2) {
+				margin-top: 1em;
+			}
+		}
+	}
 }
 
 .feature-box {
@@ -282,22 +432,28 @@ header {
 		width: 100%;
 		padding: 0 20rem;
 	}
-}
-
-label {
-	margin-top: 1rem;
-	font-size: 1.8rem;
-	display: block;
-	> input, textarea {
-		font-size: 1.2em;
-		display: block;
-		margin-top: 1rem;
-		width: 100%;
-		padding: 2rem;
-		border: 1px solid #d9d9d9 ;
+	.title {
+		font-size: 5rem;
+		font-weight: 900;
 	}
-	> textarea {
-		height: 10em;
+	.subtitle {
+		margin-top: 1rem;
+		font-size: 2rem;
+	}
+
+	@include respond(sm) {
+		padding: 7.8rem 3rem 4rem 3rem;
+		.title {
+			font-size: 1.6em;
+		}
+		.subtitle {
+			font-size: 1em;
+		}
+	}
+	@include respond(sm) {
+		> div {
+			padding: 0;
+		}
 	}
 }
 
@@ -316,6 +472,41 @@ label {
 		cursor: pointer;
 		letter-spacing: 0.3em;
 	}
+	@include respond(sm) {
+		margin: 2rem 0;
+		> li {
+			font-size: 0.8em;
+			letter-spacing: 0;
+			white-space: nowrap;
+		}
+	}
+}
+
+label {
+	margin-top: 1rem;
+	font-size: 1.8rem;
+	display: block;
+	> input, textarea {
+		font-size: 1.2em;
+		display: block;
+		margin-top: 1rem;
+		width: 100%;
+		padding: 2rem;
+		border: 1px solid #d9d9d9 ;
+	}
+	> textarea {
+		height: 10em;
+	}
+	@include respond(sm) {
+		font-size: 0.9em;
+		> input, textarea {
+			margin-top: 0.3em;
+			padding: 0.4em;
+		}
+		> textarea {
+			height: 5em;
+		}
+	}
 }
 
 #send-button {
@@ -324,6 +515,10 @@ label {
 	margin-top: 5.5em;
 	display: flex;
 	justify-content: center;
+	@include respond(sm) {
+		margin-top: 6em;
+		font-size: 0.65em;
+	}
 }
 
 button {
@@ -392,6 +587,12 @@ button:hover:before, button:hover:after, button:focus:before, button:focus:after
 		width: 100%;
 		padding: 0 20rem;
 	}
+	@include respond(sm) {
+		padding: 3rem;
+		> div {
+			padding: 0;
+		}
+	}
 }
 
 footer {
@@ -406,6 +607,9 @@ footer {
 		max-width: 70rem;
 		aspect-ratio: 6 / 1.1;
 		object-fit: cover;
+	}
+	> #ci-mobile {
+		display: none;
 	}
 	> div {
 		font-size: 1.2em;
@@ -422,21 +626,44 @@ footer {
 				color: var(--color-gray-50);
 			}
 		}
-		> a {
-			display: flex;
-			justify-content: flex-end;
-			align-items: center;
-			color: var(--color-black);
-			cursor: pointer;
-			gap: 0.4em;
-			font-size: 1.5em;
-			font-weight: 900;
-			margin-top: 0.3em;
-			> span {
-				font-size: 1.6em;
-				color: red !important;
-			}
+	}
+	@include respond(sm) {
+		display: flex;
+		flex-direction: column;
+		> #ci {
+			display: none;
 		}
+		> #ci-mobile {
+			display:inline;
+			align-self: flex-end;
+			object-fit: contain;
+			width: 5em;
+			aspect-ratio: 1/1;
+			margin-right: -1.3rem;
+		}
+		> div {
+			font-size: 0.9em;
+		}
+	}
+}
+
+a {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	color: var(--color-black);
+	cursor: pointer;
+	gap: 0.4em;
+	font-size: 1.5em;
+	font-weight: 900;
+	margin-top: 0.3em;
+	> span {
+		font-size: 1.6em;
+		color: red !important;
+	}
+	&.header {
+		font-size: 1em;
+		margin-top: 2em;
 	}
 }
 
@@ -468,5 +695,14 @@ footer {
 	}
 	&.off {
 		animation: slide-out 0.3s ease forwards;
+	}
+	@include respond(sm) {
+		font-size: 0.9em;
+		padding: 1em 1.5em;
+		&.phone, &.address {
+			column-gap: 1.5rem;
+			left: 26%;
+			top: 40%;
+		}
 	}
 }

@@ -1,6 +1,7 @@
 import { forwardRef, useState } from "react"
 import { YoutubeFilled } from "@ant-design/icons"
 import CI from "../assets/images/CI_full.png"
+import CI_icon from "../assets/images/CI_icon.png"
 import useDeviceType from "../services/useDeviceType"
 import { Alert } from "./components"
 import useAlert from "../services/useAlert"
@@ -30,7 +31,8 @@ const Footer = forwardRef(function Footer (_,ref) {
     return (
         <section id="footer-wrapper">
             <footer ref={ref}>
-                <img src={CI} alt="CI"/>
+                <img id={`ci`} src={CI} alt="CI"/>
+                <img id={`ci-mobile`} src={CI_icon} alt="CI"/>
                 <div>
                     <span onClick={()=>handleClickContact('address')}>서울 강남구 논현동 115-7, 미성빌딩 1층</span><br/>
                     <span onClick={()=>handleClickContact('phone')}>02.557.8075</span><br/>

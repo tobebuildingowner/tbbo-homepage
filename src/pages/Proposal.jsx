@@ -73,9 +73,7 @@ const Proposal = forwardRef(function Proposal (_, ref) {
                             {item}
                             {item === inputValues.type ? (
                                 <motion.div
-                                    // style={underline}
                                     layoutId="tabs"
-                                    id="underline"
                                 />
                             ) : null}
                         </motion.li>
