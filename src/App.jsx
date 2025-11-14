@@ -12,6 +12,10 @@ import Footer from './components/Footer'
 import { inputColumns, managementFeature, rentFeature, tradeFeature } from './constants/constants'
 
 gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.normalizeScroll(true);
+// ScrollTrigger.config({
+//     ignoreMobileResize: true
+// });
 
 function App() {
 
@@ -61,11 +65,12 @@ function App() {
       // markers: true,
     },);
     
-    gsap.set("[class^='feature-box'], [id$='description'], [id$='-img']", { x: '30%', opacity: 0 }); 
+    gsap.set(".feature-box, [id$='description'],[id$='-img']", { x: '30%', opacity: 0 }); 
       
     const tl3 = gsap.timeline({scrollTrigger:{
       trigger: '#trade-description',
       start: "top center+=20%",
+      end: "end top",
       scrub: false,
       // markers: true,
     }})
@@ -129,11 +134,13 @@ function App() {
           "<0.1")
     })
     tl6.to("#send-button", {duration: 0.3, opacity: 1, y:0, ease: "power2.in"}, "<0.15")
-
   },[])
   
   useEffect(()=>{
     window.scrollTo(0,0)
+    window.addEventListener('load', () => {
+    ScrollTrigger.refresh(true);
+});
   },[])
 
   return (

@@ -12,6 +12,7 @@ export default function Header({refs}) {
         if (!el) return
         console.log(key)
         el.scrollIntoView({ behavior: "smooth" })
+        setIsOpenMenu(false)
     }
 
     return(

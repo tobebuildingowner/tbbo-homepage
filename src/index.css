@@ -22,6 +22,7 @@ body {
   margin: 0;
   padding: 0;
   width: calc(100vw - 6px);
+  height: 100%;
   overflow-x: hidden;
   /* 스크롤바 사이즈 제외,
     margin: 0 설정도 여기에 같이 해야 함. */
