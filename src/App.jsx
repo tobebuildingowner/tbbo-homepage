@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import Header from './components/Header'
 import './styles/styles.scss'
 import Title from './components/Title'
@@ -10,6 +10,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Footer from './components/Footer'
 import { inputColumns, managementFeature, rentFeature, tradeFeature } from './constants/constants'
+import { LoadingDots } from './components/components'
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.normalizeScroll(true);
@@ -144,7 +145,8 @@ function App() {
   },[])
 
   return (
-    <>
+
+    <Suspense fallback={<LoadingDots/>}>
       <Header refs={refs}/>
       <main>
         <Title ref={(el) => (refs.current.company = el)}/>
@@ -153,7 +155,8 @@ function App() {
         <Proposal ref={(el) => (refs.current.proposal = el)}/>
         <Footer ref={(el) => (refs.current.contact = el)}/>
       </main>
-    </>
+    </Suspense>
+
   )
 }
 
