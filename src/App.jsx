@@ -1,28 +1,33 @@
-import { Suspense, useEffect, useRef, useState } from 'react'
-import Header from './components/Header'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import './styles/styles.scss'
+import Header from './components/Header'
 import Title from './components/Title'
 import Company from './pages/Company'
 import WhatWeDo from './pages/WhatWeDo'
 import Proposal from './pages/Proposal'
+import Footer from './components/Footer'
 import { useGSAP } from '@gsap/react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Footer from './components/Footer'
 import { inputColumns, managementFeature, rentFeature, tradeFeature } from './constants/constants'
 import { LoadingDots } from './components/components'
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.normalizeScroll(true);
-// ScrollTrigger.config({
-//     ignoreMobileResize: true
-// });
 
 function App() {
 
-  const [onCountDown, isOnCountDown] = useState(false)
+  const [onCountDown, setOnCountDown] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
   const refs = useRef({company:null, whatWeDo: null, proposal: null, contact:null})
   
+  // const Header   = lazy(() => import("./components/Header"));
+  // const Title    = lazy(() => import("./components/Title"));
+  // const Company  = lazy(() => import("./pages/Company"));
+  // const WhatWeDo = lazy(() => import("./pages/WhatWeDo"));
+  // const Proposal = lazy(() => import("./pages/Proposal"));
+  // const Footer   = lazy(() => import("./components/Footer"));
+
   useGSAP(()=>{
     
     gsap.set(["#subtitle", ".intro", ".history"], { opacity: 0 });
@@ -37,7 +42,7 @@ function App() {
     .to(".intro", {opacity: 1, duration: 0.3, ease: true}, "<", 0.3)
     .to(".intro", {opacity: 0, duration: 0.2, ease: true}, )
     .to(".history", {opacity: 1, duration: 0.3, ease: true}, "<0.1", 0.8)
-    .call(()=>isOnCountDown(true))
+    .call(()=>setOnCountDown(true))
     .addPause(1.5)
 
     ScrollTrigger.create({
@@ -145,18 +150,17 @@ function App() {
   },[])
 
   return (
-
-    <Suspense fallback={<LoadingDots/>}>
+    <>
+      <LoadingDots isLoaded={isLoaded}/>
       <Header refs={refs}/>
       <main>
         <Title ref={(el) => (refs.current.company = el)}/>
-        <Company onCountDown={onCountDown}/>
+        <Company onCountDown={onCountDown} setIsLoaded={setIsLoaded}/>
         <WhatWeDo ref={(el) => (refs.current.whatWeDo = el)}/>
         <Proposal ref={(el) => (refs.current.proposal = el)}/>
         <Footer ref={(el) => (refs.current.contact = el)}/>
       </main>
-    </Suspense>
-
+      </>
   )
 }
 

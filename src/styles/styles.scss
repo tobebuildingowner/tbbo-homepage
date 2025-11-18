@@ -782,6 +782,7 @@ a {
 	position: fixed;
 	inset: 0;
 	z-index: 20;
+	opacity: 1;
 	background-color: white;
 	display: flex;
 	font-weight: 700;
@@ -789,6 +790,7 @@ a {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	transition: opacity 0.5s ease;
 	> div {
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr;
@@ -809,5 +811,9 @@ a {
 				animation-delay: 1s;
 			}
 		}
+	}
+	&.off {
+		opacity: 0;
+		pointer-events: none;
 	}
 }

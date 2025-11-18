@@ -1,14 +1,14 @@
 import CountDown from '../components/CountDown'
 import video01 from '../assets/video_01.mp4'
 
-export default function Company({onCountDown}) {
+export default function Company({onCountDown, setIsLoaded}) {
 
 
     return(
 
         <section id='company-wrapper'>
             {/* video */}
-            <video autoPlay muted loop playsInline>
+            <video autoPlay muted loop playsInline onCanPlay={()=>setIsLoaded(true)}>
                 <source
                     src={video01}
                     type="video/mp4"/>

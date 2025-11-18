@@ -13,10 +13,10 @@ export const Alert = ({isAlertOn, alertType}) => {
 }
 
 
-export const LoadingDots= ({}) => {
+export const LoadingDots= ({isLoaded}) => {
     return (
-        <div id="loading-dots">
-            로딩중...
+        <div id="loading-dots" className={isLoaded? "off":"on"}>
+            lodading...
             <div>
                 <span/>
                 <span/>
