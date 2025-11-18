@@ -16,7 +16,7 @@ export const Alert = ({isAlertOn, alertType}) => {
 export const LoadingDots= ({isLoaded}) => {
     return (
         <div id="loading-dots" className={isLoaded? "off":"on"}>
-            lodading...
+            loading...
             <div>
                 <span/>
                 <span/>
