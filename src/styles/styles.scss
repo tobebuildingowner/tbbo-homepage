@@ -144,13 +144,13 @@ header {
 		&.on {
 			>span:first-of-type {
 				rotate: 45deg;
-				transform: translateX(25%);
+				transform: translateX(0.5rem);
 			}
 			>span:nth-of-type(2) {
 				display: none;
 			}
 			>span:last-of-type {
-				transform: translateX(25%);
+				transform: translateX(0.5rem);
 				rotate: -45deg;
 			}
 		}
