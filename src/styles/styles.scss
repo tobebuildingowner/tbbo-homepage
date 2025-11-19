@@ -143,15 +143,13 @@ header {
 		}
 		&.on {
 			>span:first-of-type {
-				rotate: 45deg;
-				transform: translateX(0.5rem);
+				transform: translatey(0.35rem) rotate(45deg);
 			}
 			>span:nth-of-type(2) {
 				display: none;
 			}
 			>span:last-of-type {
-				transform: translateX(0.5rem);
-				rotate: -45deg;
+				transform: translatey(-0.35rem) rotate(-45deg);
 			}
 		}
 	}
